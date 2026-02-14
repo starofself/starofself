@@ -24,6 +24,9 @@ def main() -> None:
     assert hasattr(ai_analyzer, "analyze_pdf_with_gemini")
     assert "google_api_key" in signature(ai_analyzer.analyze_pdf_with_gemini).parameters
 
+    assert hasattr(ai_analyzer, "build_gemini_web_prompt")
+    assert "company_name" in signature(ai_analyzer.build_gemini_web_prompt).parameters
+
     print("OK: imports and interfaces are valid.")
 
 

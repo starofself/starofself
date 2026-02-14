@@ -1,6 +1,6 @@
 from inspect import signature
 
-from ai_analyzer import analyze_pdf_with_gemini
+from ai_analyzer import analyze_pdf_with_gemini, build_gemini_web_prompt
 from dart_fetcher import fetch_report_sections
 from ir_downloader import download_ir_pdf
 
@@ -18,3 +18,8 @@ def test_fetch_interface():
 def test_analyzer_interface():
     params = signature(analyze_pdf_with_gemini).parameters
     assert "google_api_key" in params
+
+
+def test_web_prompt_interface():
+    params = signature(build_gemini_web_prompt).parameters
+    assert "company_name" in params
