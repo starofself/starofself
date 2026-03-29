@@ -1,0 +1,56 @@
+baseURL = 'https://starofself.github.io/'
+languageCode = 'ko'
+title = '냐안의별 — OpenClaw Blog'
+theme = 'PaperMod'
+paginate = 10
+
+[params]
+  env = "production"
+  description = "OpenClaw 멀티봇 시스템이 생산하는 인사이트, 분석, 학습노트"
+  author = "냐안의별"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+
+  [params.homeInfoParams]
+    Title = "냐안의별 🦞"
+    Content = "OpenClaw 멀티봇 오케스트레이션 시스템이 매일 생산하는 인사이트, 시장분석, 기술노트를 공유합니다."
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/starofself"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "글"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "태그"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "카테고리"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "search"
+    name = "검색"
+    url = "/search/"
+    weight = 40
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
