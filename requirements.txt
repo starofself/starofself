@@ -1,0 +1,7 @@
+streamlit>=1.33.0
+OpenDartReader>=0.2.3
+google-generativeai>=0.7.2
+requests>=2.31.0
+beautifulsoup4>=4.12.3
+python-dotenv>=1.0.1
+pytest>=8.0.0
