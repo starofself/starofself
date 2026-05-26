@@ -54,3 +54,6 @@ paginate = 10
   [markup.highlight]
     style = "monokai"
     lineNos = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
