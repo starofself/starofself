@@ -124,17 +124,137 @@ AI 가속기 보드를 위에서 본다고 생각해봅시다.
 
 즉 MLCC는 “집 밖 마당에 있는 비상 배터리”에 가깝고, 실리콘캐패시터는 “방 안 책상 옆에 붙여둔 비상 배터리”에 가깝습니다. 둘 다 전기를 도와주지만, 순간적으로 필요할 때는 가까운 쪽이 훨씬 빠릅니다.
 
-<figure style="margin:24px 0">
-  <img src="/starofself/images/2026-05-26-mlcc-silicon-cap-top-view.png" alt="보드 위 MLCC와 패키지 안 실리콘캐패시터 실장 위치 비교" style="width:100%;height:auto;border:1px solid #e5e7eb;border-radius:18px;background:#f8fafc" />
-  <figcaption style="font-size:0.9em;color:#64748b;text-align:center;margin-top:8px">위에서 본 배치: MLCC는 PCB 보드 위, 실리콘캐패시터는 GPU/HBM 패키지 안쪽에 더 가깝게 들어갈 수 있습니다.</figcaption>
-</figure>
+<div style="border:1px solid #e5e7eb;border-radius:18px;padding:18px;margin:24px 0;background:#f8fafc;overflow-x:auto">
+<svg width="920" height="500" viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="보드 위 MLCC와 패키지 안 실리콘캐패시터 실장 위치 비교">
+  <defs>
+    <marker id="arrowNear" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker>
+    <marker id="arrowFar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/></marker>
+  </defs>
+
+  <text x="460" y="42" text-anchor="middle" font-size="27" font-weight="900" fill="#0f172a">왜 실리콘캐패시터가 더 가까울 수 있나?</text>
+  <text x="460" y="72" text-anchor="middle" font-size="15" fill="#475569">MLCC는 PCB 보드 위, 실리콘캐패시터는 패키지 안쪽까지 들어갈 수 있다</text>
+
+  <rect x="55" y="130" width="810" height="250" rx="28" fill="#dbeafe" stroke="#60a5fa" stroke-width="3"/>
+  <text x="92" y="162" font-size="18" font-weight="900" fill="#1e3a8a">PCB 보드</text>
+
+  <rect x="295" y="165" width="330" height="170" rx="22" fill="#e2e8f0" stroke="#64748b" stroke-width="3"/>
+  <text x="460" y="192" text-anchor="middle" font-size="18" font-weight="900" fill="#334155">GPU/HBM 패키지 기판</text>
+
+  <rect x="352" y="215" width="95" height="68" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="3"/>
+  <text x="399" y="244" text-anchor="middle" font-size="18" font-weight="900" fill="#991b1b">GPU</text>
+  <text x="399" y="266" text-anchor="middle" font-size="12" fill="#7f1d1d">전류 급변</text>
+
+  <rect x="478" y="215" width="95" height="68" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+  <text x="525" y="244" text-anchor="middle" font-size="18" font-weight="900" fill="#92400e">HBM</text>
+  <text x="525" y="266" text-anchor="middle" font-size="12" fill="#78350f">초고속 메모리</text>
+
+  <rect x="335" y="305" width="250" height="18" rx="9" fill="#94a3b8"/>
+  <text x="460" y="354" text-anchor="middle" font-size="13" fill="#475569">패키지 내부 배선/인터포저/기판</text>
+
+  <rect x="170" y="198" width="62" height="36" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="3"/>
+  <text x="201" y="221" text-anchor="middle" font-size="14" font-weight="900" fill="#854d0e">MLCC</text>
+  <rect x="700" y="198" width="62" height="36" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="3"/>
+  <text x="731" y="221" text-anchor="middle" font-size="14" font-weight="900" fill="#854d0e">MLCC</text>
+
+  <rect x="416" y="290" width="88" height="32" rx="8" fill="#fae8ff" stroke="#a855f7" stroke-width="3"/>
+  <text x="460" y="311" text-anchor="middle" font-size="13" font-weight="900" fill="#6b21a8">실리콘C</text>
+
+  <path d="M201 216 C260 205, 305 210, 352 236" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="10 8" marker-end="url(#arrowFar)"/>
+  <text x="255" y="185" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">보드 배선 경유</text>
+  <text x="255" y="250" text-anchor="middle" font-size="13" fill="#991b1b">길다 → 루프 인덕턴스↑</text>
+
+  <path d="M460 290 C448 278, 432 265, 410 250" fill="none" stroke="#0f766e" stroke-width="6" marker-end="url(#arrowNear)"/>
+  <text x="575" y="305" font-size="14" font-weight="900" fill="#0f766e">패키지 안에서 바로 공급</text>
+  <text x="575" y="327" font-size="13" fill="#115e59">짧다 → ESL/노이즈↓</text>
+
+  <rect x="100" y="405" width="330" height="58" rx="16" fill="white" stroke="#fecaca" stroke-width="2"/>
+  <text x="265" y="429" text-anchor="middle" font-size="15" font-weight="900" fill="#991b1b">MLCC 경로</text>
+  <text x="265" y="451" text-anchor="middle" font-size="13" fill="#475569">보드 패턴 + 비아 + 패키지 기판을 거쳐 칩까지 간다</text>
+
+  <rect x="490" y="405" width="330" height="58" rx="16" fill="white" stroke="#99f6e4" stroke-width="2"/>
+  <text x="655" y="429" text-anchor="middle" font-size="15" font-weight="900" fill="#0f766e">실리콘캐패시터 경로</text>
+  <text x="655" y="451" text-anchor="middle" font-size="13" fill="#475569">패키지 내부에서 칩 근처에 붙어 순간 전류를 준다</text>
+</svg>
+</div>
 
 위 그림이 “위에서 본 배치”라면, 아래는 **옆에서 자른 단면도**입니다. 이 그림이 핵심입니다. MLCC는 PCB 표면에 납땜되어 있고, GPU까지 가려면 보드 배선과 비아, 패키지 범프를 거칩니다. 반면 실리콘캐패시터는 패키지 기판 안쪽이나 칩 바로 아래쪽에 붙을 수 있어 전류 루프가 훨씬 짧습니다.
 
-<figure style="margin:24px 0">
-  <img src="/starofself/images/2026-05-26-mlcc-silicon-cap-cross-section.png" alt="PCB 보드 단면에서 MLCC와 실리콘캐패시터 실장 위치 비교" style="width:100%;height:auto;border:1px solid #e5e7eb;border-radius:18px;background:#ffffff" />
-  <figcaption style="font-size:0.9em;color:#64748b;text-align:center;margin-top:8px">옆에서 자른 단면: MLCC는 PCB 표면, 실리콘캐패시터는 패키지 내부/칩 아래쪽에 위치해 전류 경로를 짧게 만듭니다.</figcaption>
-</figure>
+<div style="border:1px solid #e5e7eb;border-radius:18px;padding:18px;margin:24px 0;background:#ffffff;overflow-x:auto">
+<svg width="940" height="560" viewBox="0 0 940 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PCB 보드 단면에서 MLCC와 실리콘캐패시터 실장 위치 비교">
+  <defs>
+    <marker id="redArrowCross" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/></marker>
+    <marker id="greenArrowCross" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#059669"/></marker>
+    <linearGradient id="pcbLayer" x1="0" x2="1"><stop offset="0" stop-color="#bfdbfe"/><stop offset="1" stop-color="#93c5fd"/></linearGradient>
+    <linearGradient id="pkgLayer" x1="0" x2="1"><stop offset="0" stop-color="#e5e7eb"/><stop offset="1" stop-color="#cbd5e1"/></linearGradient>
+  </defs>
+
+  <text x="470" y="42" text-anchor="middle" font-size="27" font-weight="900" fill="#0f172a">PCB/패키지 단면 비교: 누가 GPU에 더 가까운가?</text>
+  <text x="470" y="72" text-anchor="middle" font-size="15" fill="#475569">노란 MLCC는 보드 표면, 보라색 실리콘캐패시터는 패키지 내부/칩 아래쪽</text>
+
+  <rect x="60" y="400" width="820" height="72" rx="12" fill="url(#pcbLayer)" stroke="#2563eb" stroke-width="3"/>
+  <text x="92" y="443" font-size="18" font-weight="900" fill="#1e3a8a">PCB 보드</text>
+  <line x1="220" y1="418" x2="840" y2="418" stroke="#1d4ed8" stroke-width="4" opacity="0.35"/>
+  <line x1="220" y1="438" x2="840" y2="438" stroke="#1d4ed8" stroke-width="3" opacity="0.25"/>
+  <line x1="220" y1="456" x2="840" y2="456" stroke="#1d4ed8" stroke-width="3" opacity="0.25"/>
+  <text x="520" y="493" text-anchor="middle" font-size="13" fill="#475569">PCB 내부 구리 배선층: 전류가 돌아가는 길이 길수록 기생 인덕턴스가 커진다</text>
+
+  <rect x="300" y="262" width="360" height="96" rx="14" fill="url(#pkgLayer)" stroke="#64748b" stroke-width="3"/>
+  <text x="480" y="292" text-anchor="middle" font-size="18" font-weight="900" fill="#334155">패키지 기판 / 인터포저 영역</text>
+  <line x1="330" y1="322" x2="630" y2="322" stroke="#64748b" stroke-width="4" opacity="0.4"/>
+  <line x1="330" y1="342" x2="630" y2="342" stroke="#64748b" stroke-width="3" opacity="0.3"/>
+
+  <rect x="365" y="136" width="112" height="74" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="3"/>
+  <text x="421" y="168" text-anchor="middle" font-size="20" font-weight="900" fill="#991b1b">GPU</text>
+  <text x="421" y="192" text-anchor="middle" font-size="12" fill="#7f1d1d">전류 급변</text>
+
+  <rect x="505" y="136" width="98" height="74" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+  <text x="554" y="168" text-anchor="middle" font-size="20" font-weight="900" fill="#92400e">HBM</text>
+  <text x="554" y="192" text-anchor="middle" font-size="12" fill="#78350f">메모리</text>
+
+  <line x1="385" y1="210" x2="385" y2="262" stroke="#475569" stroke-width="5"/>
+  <line x1="421" y1="210" x2="421" y2="262" stroke="#475569" stroke-width="5"/>
+  <line x1="457" y1="210" x2="457" y2="262" stroke="#475569" stroke-width="5"/>
+  <text x="278" y="244" font-size="13" fill="#475569">마이크로범프/접속부</text>
+
+  <rect x="425" y="232" width="110" height="28" rx="7" fill="#fae8ff" stroke="#a855f7" stroke-width="3"/>
+  <text x="480" y="251" text-anchor="middle" font-size="13" font-weight="900" fill="#6b21a8">실리콘캐패시터</text>
+  <text x="480" y="224" text-anchor="middle" font-size="13" font-weight="800" fill="#6b21a8">패키지 안, 칩 바로 아래/옆</text>
+
+  <rect x="135" y="356" width="82" height="38" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="3"/>
+  <text x="176" y="380" text-anchor="middle" font-size="15" font-weight="900" fill="#854d0e">MLCC</text>
+  <text x="176" y="338" text-anchor="middle" font-size="13" font-weight="800" fill="#854d0e">PCB 표면 실장</text>
+
+  <circle cx="250" cy="400" r="7" fill="#1d4ed8"/>
+  <circle cx="300" cy="400" r="7" fill="#1d4ed8"/>
+  <circle cx="350" cy="400" r="7" fill="#1d4ed8"/>
+  <circle cx="410" cy="358" r="6" fill="#64748b"/>
+  <line x1="250" y1="400" x2="250" y2="358" stroke="#1d4ed8" stroke-width="4" stroke-dasharray="5 5"/>
+  <line x1="300" y1="400" x2="300" y2="358" stroke="#1d4ed8" stroke-width="4" stroke-dasharray="5 5"/>
+  <line x1="350" y1="400" x2="350" y2="358" stroke="#1d4ed8" stroke-width="4" stroke-dasharray="5 5"/>
+  <text x="287" y="384" text-anchor="middle" font-size="12" fill="#1e40af">비아</text>
+
+  <path d="M176 356 C210 330, 250 320, 300 340 C350 365, 365 300, 421 210" fill="none" stroke="#dc2626" stroke-width="6" stroke-dasharray="12 8" marker-end="url(#redArrowCross)"/>
+  <text x="170" y="280" font-size="15" font-weight="900" fill="#b91c1c">MLCC 전류 경로</text>
+  <text x="170" y="303" font-size="13" fill="#991b1b">보드 위 → PCB 배선/비아 → 패키지 → GPU</text>
+  <text x="170" y="324" font-size="13" fill="#991b1b">길고 돌아간다 = 루프 인덕턴스↑</text>
+
+  <path d="M480 232 C462 216, 445 202, 421 180" fill="none" stroke="#059669" stroke-width="7" marker-end="url(#greenArrowCross)"/>
+  <text x="590" y="238" font-size="15" font-weight="900" fill="#047857">실리콘C 전류 경로</text>
+  <text x="590" y="261" font-size="13" fill="#065f46">패키지 안 → GPU 바로 옆</text>
+  <text x="590" y="282" font-size="13" fill="#065f46">짧고 작다 = ESL↓, droop↓</text>
+
+  <rect x="80" y="94" width="255" height="78" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text x="207" y="122" text-anchor="middle" font-size="15" font-weight="900" fill="#9a3412">비유</text>
+  <text x="207" y="146" text-anchor="middle" font-size="13" fill="#7c2d12">MLCC = 집 밖 마당 비상배터리</text>
+  <text x="207" y="164" text-anchor="middle" font-size="13" fill="#7c2d12">실리콘C = 책상 옆 비상배터리</text>
+
+  <rect x="665" y="345" width="205" height="92" rx="16" fill="#ecfdf5" stroke="#34d399" stroke-width="2"/>
+  <text x="767" y="373" text-anchor="middle" font-size="15" font-weight="900" fill="#047857">얻는 이점</text>
+  <text x="767" y="397" text-anchor="middle" font-size="13" fill="#065f46">순간 전류 대응↑</text>
+  <text x="767" y="416" text-anchor="middle" font-size="13" fill="#065f46">전압 흔들림↓</text>
+  <text x="767" y="435" text-anchor="middle" font-size="13" fill="#065f46">전압 마진/발열↓</text>
+</svg>
+</div>
 
 이 단면도를 보면 “왜 비싼 실리콘캐패시터를 굳이 쓰는가”가 더 명확해집니다. AI GPU 입장에서는 **멀리 있는 큰 물탱크**보다 **바로 옆 작은 물통**이 순간 압력 저하를 더 빨리 막아줍니다. MLCC는 여전히 보드 전체를 받치는 주력이고, 실리콘캐패시터는 칩 바로 옆에서 마지막 순간 전압을 지키는 부품입니다.
 
